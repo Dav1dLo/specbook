@@ -1,0 +1,22 @@
+CREATE VIEW SalesOrderDetails AS
+SELECT
+    SOD.SalesOrderDetailID,
+    SOD.SalesOrderID,
+    SOH.OrderDateKey,
+    SOH.ShipDateKey,
+    SOH.CustomerID,
+    SOH.BillToAddressID,
+    SOH.ShipToAddressID,
+    SOD.ProductID,
+    SOD.OrderQty AS quantityOrdered,
+    SOD.UnitPrice,
+    SOD.UnitPriceDiscount,
+    SOD.LineTotal,
+    SOH.TotalDue AS totalOrderAmount,
+    SOH.TaxAmt AS taxAmount,
+    SOH.Freight AS freightAmount,
+    SOH.SubTotal AS subTotalAmount
+FROM
+    SalesOrderDetail AS SOD
+JOIN
+    SalesOrderHeader AS SOH ON SOD.SalesOrderID = SOH.SalesOrderID;
